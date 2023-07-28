@@ -26,8 +26,27 @@ const create = (product) => {
     })
 }
 
+const update = (id, productData) => {
+    return new Promise((resolve, reject) => {
+        const index = products.findIndex((p) => p.id === id)
+        products[index] = { id, ...productData }
+        writeDataToFile('./data/products.json', products);
+        resolve(products[index])
+    })
+}
+
+const remove = (id) => {
+    return new Promise((resolve, reject) => {
+        products = products.filter((p) => p.id !== id)
+        writeDataToFile('./data/products.json', products)
+        resolve()
+    })
+}
+
 module.exports = {
     findAll,
     findById,
-    create
+    create,
+    update,
+    remove
 }
