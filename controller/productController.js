@@ -32,10 +32,10 @@ const createProduct = async (req, res) => {
     try {
         const body = await getPostData(req)
 
-        const { title, description, price } = JSON.parse(body)
+        const { name, description, price } = JSON.parse(body)
 
         const product = {
-            title,
+            name,
             description,
             price
         }
